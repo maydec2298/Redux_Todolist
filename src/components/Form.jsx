@@ -1,48 +1,60 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-// import { useDispatch, useSelector } from "react-redux";
-// import { add } from "../redux/modules/todos";
+import { useDispatch, useSelector } from "react-redux";
+import { addTodo } from "../redux/modules/todos";
 
 const Form = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todos);
+
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  // const todos = useSelector((state) => state.todos);
 
-  // const onSubmitHandler = (e) => {
-  //   e.preventDefault();
-  //   if (title === "") return; // 아무것도 입력하지 않았을 때 dispatch 하지 않음
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    if (title === "") return; // 아무것도 입력하지 않았을 때 dispatch 하지 않음
 
-  //   dispatch(
-  //     add({
-  //       id: todos.length + 1,
-  //       title,
-  //     })
-  //   );
-  // };
+    dispatch(
+      addTodo({
+        id: todos.length + 1,
+        title,
+        body,
+        isDone: false,
+      })
+    );
+    setTitle("")
+    setBody("")
+  };
 
   return (
-    <FormBox>
 
-      <div>제목
-        <StInput
-          type="text"
-          value={title}
-          onChange={(e) => {
-            setTitle(e.target.value);
-          }}
-        /></div>
-      <div>내용
-        <StInput
-          type="text"
-          value={body}
-          onChange={(e) => {
-            setBody(e.target.value);
-          }}
-        /></div>
-      <StButton>추가하기</StButton>
+    <form onSubmit={onSubmitHandler}>
+      <FormBox >
 
-    </FormBox>
+        <div>제목
+          <StInput
+            type="text"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+            }}
+          /></div>
+
+        <div>내용
+          <StInput
+            type="text"
+            value={body}
+            onChange={(e) => {
+              setBody(e.target.value);
+            }}
+          /></div>
+
+        <StButton>추가하기</StButton>
+
+      </FormBox>
+    </form>
+
+
   );
 };
 
@@ -54,6 +66,7 @@ const FormBox = styled.div`
   overflow: hidden;
   font-family: 'Jua', sans-serif;
   font-size: 17px;
+  
 `
 const StInput = styled.input`
 margin-left: 20px;

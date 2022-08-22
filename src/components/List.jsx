@@ -1,17 +1,38 @@
 import React from 'react';
 import Todo from './Todo';
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 const List = () => {
+  const { todos } = useSelector((state) => state.todos);
+
   return (
     <ListBox>
+
       <h2>Working 🔥</h2>
       <Todos_Working>
-        <Todo />
+
+        {todos.map((todo) => {
+          if (todo.isDone === false) {
+            return (
+              <Todo key={todo.id} todo={todo} />
+            )
+          }
+        }
+        )}
       </Todos_Working>
+
       <h2>Done🎉</h2>
       <Todos_Done>
-        <Todo />
+
+        {todos.map((todo) => {
+          if (todo.isDone === true) {
+            return (
+              <Todo key={todo.id} todo={todo} />
+            )
+          }
+        }
+        )}
       </Todos_Done>
     </ListBox>
   );
@@ -29,4 +50,8 @@ const Todos_Done = styled.div`
   flex-wrap: wrap;
   text-decoration: line-through;
 `
+// const Todo = styled.div`
+//   border:1px solid #000;
+// `
+
 export default List;
