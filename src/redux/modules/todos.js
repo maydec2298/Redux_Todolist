@@ -1,19 +1,24 @@
-const CreateTodo = "CreateTodo";
-const DeleteTodo = "DeleteTodo";
-const ToggleStatusTodo = "ToggleStatusTodo";
+const CREATETODO = "CREATETODO";
+const DELETETODO = "DELETETODO";
+const TOGGLETODO = "TOGGLETODO";
+// const TODOID = "TODOID";
 
 //Action create
 export const addTodo = (payload) => {
-  return { type: CreateTodo, payload };
+  return { type: CREATETODO, payload };
 };
 
 export const deleteTodo = (payload) => {
-  return { type: DeleteTodo, payload };
+  return { type: DELETETODO, payload };
 };
 
 export const toggleStatusTodo = (payload) => {
-  return { type: ToggleStatusTodo, payload };
+  return { type: TOGGLETODO, payload };
 };
+
+// export const getTodoById = () => {
+//   return { type: TODOID };
+// };
 
 // 초기 상태값
 const initialState = {
@@ -37,27 +42,29 @@ const initialState = {
 // 리듀서
 const todos = (state = initialState, action) => {
   switch (action.type) {
-    case CreateTodo:
+    case CREATETODO:
       return {
         ...state,
         todos: [...state.todos, action.payload],
       };
-    case DeleteTodo:
+    case DELETETODO:
       return {
         ...state,
-        todos: [state.todos.filter((todos) => todos.id !== action.payload)]
-
-        // const onRemove = (id) => {
-        //   setTodos(todos.filter((todos) => todos.id !== id));
-        // };
+        todos: state.todos.filter((todo) => todo.id !== action.payload)
       };
-    case ToggleStatusTodo:
+    case TOGGLETODO:
       return {
         ...state,
-        todos: todos.map((todo) => {
+        todos: state.todos.map((todo) => {
           return todo.id === action.payload ? { ...todo, isDone: !todo.isDone } : todo;
         })
       }
+
+    // case TODOID:
+    //   return {
+    //     ...state,
+    //     id: getTodoById.length + 1
+    //   }
     default:
       return state;
   }

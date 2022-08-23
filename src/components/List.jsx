@@ -10,7 +10,7 @@ const List = () => {
     <ListBox>
 
       <h2>Working 🔥</h2>
-      <Todos_Working>
+      <TodosWorking>
 
         {todos.map((todo) => {
           if (todo.isDone === false) {
@@ -20,20 +20,18 @@ const List = () => {
           }
         }
         )}
-      </Todos_Working>
+      </TodosWorking>
 
       <h2>Done🎉</h2>
-      <Todos_Done>
+      <TodosDone>
 
         {todos.map((todo) => {
           if (todo.isDone === true) {
-            return (
-              <Todo key={todo.id} todo={todo} />
-            )
+            return <Todo key={todo.id} todo={todo} />
+
           }
-        }
-        )}
-      </Todos_Done>
+        })}
+      </TodosDone>
     </ListBox>
   );
 };
@@ -41,11 +39,11 @@ const List = () => {
 const ListBox = styled.div`
   
 `
-const Todos_Working = styled.div`
+const TodosWorking = styled.div`
   display: flex;
   flex-wrap: wrap;
 `
-const Todos_Done = styled.div`
+const TodosDone = styled.div`
   display: flex;
   flex-wrap: wrap;
   text-decoration: line-through;

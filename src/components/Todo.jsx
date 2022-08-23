@@ -2,38 +2,43 @@ import React from 'react';
 import styled from "styled-components";
 import { useDispatch } from 'react-redux';
 import { deleteTodo, toggleStatusTodo } from '../redux/modules/todos';
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Todo = ({ todo }) => {
-  const todos = useSelector((state) => state.todos);
+  // const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const onRemove = (id) => {
-  //   setTodos(todo.filter((todo) => todo.id !== id));
-  // };
+  // 삭제버튼
+  const onRemove = (id) => {
+    dispatch(deleteTodo(id))
+  };
+
+  const onToggle = (id) => {
+    dispatch(toggleStatusTodo(id))
+  };
 
 
   return (
     <TodoBox>
+      <div>{todo.id}</div>
       <Todotitle>{todo.title}</Todotitle>
       <Todobody>{todo.body}</Todobody>
-      <More_btn
+      <MoreBtn
         onClick={() => {
-          navigate("/more");
+          navigate("/more")
         }}
       >
         상세보기
-      </More_btn>
-      <Button onClick={() => {
-        dispatch(deleteTodo(todo.id))
-      }}>삭제</Button>
-      {/* <Button onClick={() => onRemove(id)}>삭제</Button> */}
-      <Button onClick={() => {
-        dispatch(toggleStatusTodo(todo.id))
-      }}>
-        {todo.isDone ? "취소" : "완료"}</Button>
+      </MoreBtn>
+      <Button onClick={() => onRemove(todo.id)}>
+        삭제
+      </Button>
+
+      <Button onClick={() => onToggle(todo.id)}>
+        {todo.isDone ? "취소" : "완료"}
+      </Button>
     </TodoBox>
   );
 };
@@ -72,7 +77,7 @@ const Button = styled.div`
   font-size:13px;
 `
 
-const More_btn = styled.button`
+const MoreBtn = styled.button`
   width:100px;
   margin:10px auto 40px;
   display:flex;

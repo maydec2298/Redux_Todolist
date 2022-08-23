@@ -5,7 +5,7 @@ import { addTodo } from "../redux/modules/todos";
 
 const Form = () => {
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state.todos.todos);
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -14,9 +14,11 @@ const Form = () => {
     e.preventDefault();
     if (title === "") return; // 아무것도 입력하지 않았을 때 dispatch 하지 않음
 
+    const nextId = todos.length;
+
     dispatch(
       addTodo({
-        id: todos.length + 1,
+        id: nextId + 1,
         title,
         body,
         isDone: false,
