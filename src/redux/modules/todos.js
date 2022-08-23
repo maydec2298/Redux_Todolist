@@ -1,3 +1,4 @@
+//Action type
 const CREATETODO = "CREATETODO";
 const DELETETODO = "DELETETODO";
 const TOGGLETODO = "TOGGLETODO";
@@ -44,17 +45,17 @@ const todos = (state = initialState, action) => {
   switch (action.type) {
     case CREATETODO:
       return {
-        ...state,
+        // ...state,
         todos: [...state.todos, action.payload],
       };
     case DELETETODO:
       return {
-        ...state,
+        // ...state,
         todos: state.todos.filter((todo) => todo.id !== action.payload)
       };
     case TOGGLETODO:
       return {
-        ...state,
+        // ...state,
         todos: state.todos.map((todo) => {
           return todo.id === action.payload ? { ...todo, isDone: !todo.isDone } : todo;
         })
@@ -62,9 +63,8 @@ const todos = (state = initialState, action) => {
 
     // case TODOID:
     //   return {
-    //     ...state,
-    //     id: getTodoById.length + 1
-    //   }
+    //     todos: state.todos.filter((todo) => todo.id === action.payload)
+    //   };
     default:
       return state;
   }

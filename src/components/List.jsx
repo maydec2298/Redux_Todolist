@@ -6,6 +6,15 @@ import { useSelector } from "react-redux";
 const List = () => {
   const { todos } = useSelector((state) => state.todos);
 
+
+  //   const getTodosByIsDone = (todos, isDone) => {
+  //   return 
+  // }
+
+  //   const workingTodos = todos.filter((todo) => !todo.isDone);
+  //   const doneTodos = todos.filter((todo) => todo.isDone);
+
+
   return (
     <ListBox>
 
@@ -27,8 +36,9 @@ const List = () => {
 
         {todos.map((todo) => {
           if (todo.isDone === true) {
-            return <Todo key={todo.id} todo={todo} />
-
+            return (
+              <Todo key={todo.id} todo={todo} />
+            )
           }
         })}
       </TodosDone>

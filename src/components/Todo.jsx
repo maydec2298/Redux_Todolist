@@ -5,6 +5,13 @@ import { deleteTodo, toggleStatusTodo } from '../redux/modules/todos';
 // import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+// const todolist = useSelector((module) => module.todos.todos)
+
+// //todo 상태에 따라 리스트 분리하기
+// const workingTodos = todoList.filter((todo) => !todo.isDone);
+// const doneTodos = todoList.filter((todo) => todo.isDone);
+
+
 const Todo = ({ todo }) => {
   // const todos = useSelector((state) => state.todos);
   const dispatch = useDispatch();
@@ -15,28 +22,34 @@ const Todo = ({ todo }) => {
     dispatch(deleteTodo(id))
   };
 
+  //완료/취소
   const onToggle = (id) => {
     dispatch(toggleStatusTodo(id))
   };
 
+  const onClickMore = () => {
+    navigate(`/more/${todo.id}`)
+
+  };
 
   return (
     <TodoBox>
-      <div>{todo.id}</div>
       <Todotitle>{todo.title}</Todotitle>
+      <hr></hr>
       <Todobody>{todo.body}</Todobody>
+
       <MoreBtn
-        onClick={() => {
-          navigate("/more")
-        }}
-      >
-        상세보기
+        onClick={() => { onClickMore() }}>
+        📑 상세보기
       </MoreBtn>
-      <Button onClick={() => onRemove(todo.id)}>
+
+      <Button
+        onClick={() => onRemove(todo.id)}>
         삭제
       </Button>
 
-      <Button onClick={() => onToggle(todo.id)}>
+      <Button
+        onClick={() => onToggle(todo.id)}>
         {todo.isDone ? "취소" : "완료"}
       </Button>
     </TodoBox>
@@ -45,46 +58,45 @@ const Todo = ({ todo }) => {
 
 
 const TodoBox = styled.div`
-   width: 230px;
+   width: 210px;
   overflow:hidden;
   border: 4px solid blanchedalmond;
   border-radius: 10px;
   text-align: center;
   padding: 20px;
   margin: 20px;
-  font-family: 'Jua', sans-serif;
 `
 
 const Todotitle = styled.div`
    margin: 10px 0 30px;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 25px;
 `
+
 const Todobody = styled.div`
     margin-bottom: 10px;
+    font-size:13px;
 `
+
 const Button = styled.div`
-    margin-top: 5px;
-  padding: 8px 15px;
+  padding: 5px 15px;
   float:left;
   width:50px; 
   border-radius: 10px;
-  border: 0.5px solid #eee;
-  background-color: blanchedalmond;
+  border: 2px solid #ddd;
+  background-color: #fff;
   cursor: pointer;
-  margin: auto 16px;
-  font-family: 'Jua', sans-serif;
+  margin: auto 10px;
   font-size:13px;
 `
 
 const MoreBtn = styled.button`
-  width:100px;
   margin:10px auto 40px;
   display:flex;
   padding: 3px 20px;
   border-radius: 10px;
-    border: 0.5px solid #eee;
+  border: 2px solid #eee;
   cursor: pointer;
-
+  background-color:#fff;
 `
 export default Todo;

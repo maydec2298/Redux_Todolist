@@ -12,8 +12,8 @@ const Form = () => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (title === "") return; // 아무것도 입력하지 않았을 때 dispatch 하지 않음
-
+    if (title === "" || body === "") return; // 아무것도 입력하지 않았을 때 dispatch 하지 않음
+    //alert 추가
     const nextId = todos.length;
 
     dispatch(
@@ -66,7 +66,7 @@ const FormBox = styled.div`
 
   margin: 30px auto 50px auto;
   overflow: hidden;
-  font-family: 'Jua', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
   font-size: 17px;
   
 `
@@ -74,15 +74,15 @@ const StInput = styled.input`
 margin-left: 20px;
   border-radius: 10px;
   padding: 10px 30px;
-  border: 0.5px solid #999;
+  border: 2px solid #ddd;
 `
 const StButton = styled.button`
 padding: 10px 20px;
   border-radius: 10px;
-  border: 0.5px solid #eee;
+  border: 1px solid #eee;
   background-color: blanchedalmond;
   cursor: pointer;
   margin: 0 5px;
-  font-family: 'Jua', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
 `
 export default Form;

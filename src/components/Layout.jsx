@@ -16,6 +16,10 @@ const LayoutBox = styled.div`
   min-width: 800px;
   height: 1000px;
   margin: auto;
+  font-family: 'Ubuntu', sans-serif;
+  font-family: 'Nanum Gothic', sans-serif;
+  
+
 `
 
 export default Layout;
