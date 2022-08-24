@@ -17,8 +17,8 @@ export const toggleStatusTodo = (payload) => {
   return { type: TOGGLETODO, payload };
 };
 
-// export const getTodoById = () => {
-//   return { type: TODOID };
+// export const getTodoById = (payload) => {
+//   return { type: TODOID, payload };
 // };
 
 // 초기 상태값

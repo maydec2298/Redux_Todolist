@@ -28,12 +28,19 @@ const Todo = ({ todo }) => {
   };
 
   const onClickMore = () => {
-    navigate(`/more/${todo.id}`)
+    navigate(`/more/${todo.id}`, {
+      state: {
+        id: todo.id,
+        title: todo.title,
+        body: todo.body,
+      }
+    })
 
   };
 
   return (
     <TodoBox>
+
       <Todotitle>{todo.title}</Todotitle>
       <hr></hr>
       <Todobody>{todo.body}</Todobody>

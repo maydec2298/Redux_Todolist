@@ -2,34 +2,54 @@ import React from 'react';
 import styled from "styled-components";
 import Layout from '../components/Layout';
 import { useNavigate } from "react-router-dom";
-import { useParams } from 'react-router-dom';
-import { useSelector } from "react-redux";
+// import { useParams } from 'react-router-dom';
+// import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 // import { useDispatch } from 'react-redux';
-// import { getTodoById } from '../redux/modules/todos';
+// import { getTodoById } from '../redux/modules/todos'
 
 
 
 const More = () => {
-  const todos = useSelector((state) => state.todos.todos);
+  // const todos = useSelector((state) => state.todos.todos);
 
-  let navigate = useNavigate();
-  const param = useParams();
+
+  // useEffect(() => {
+  //   console.log(todos)
+  //   console.log('업데이트 될때 실행된다.')
+  // }, [todos])
 
   // const dispatch = useDispatch();
-  // const todoById = () => {
-  //   dispatch(getTodoById((param.id) - 1))
-  // };
+  let navigate = useNavigate();
+  let location = useLocation();
+  // const param = useParams();
+  const id = location.state.id;
+  const title = location.state.title;
+  const body = location.state.body;
 
-  const param_id = todos[(param.id) - 1]
+  // console.log(param.id)
+
+  // const todoById = (id) => {
+  //   dispatch(getTodoById(id))
+  // };
+  // const id = param.id
+  // const param_id = todos.id;
 
   return (
     <Layout>
       <MoreBox>
-        <MoreId>id:{param_id.id}</MoreId>
-        <MoreTitle>{param_id.title}</MoreTitle>
+        <MoreId>id:{id}</MoreId>
+        <MoreTitle>
+          {title}
+        </MoreTitle>
+
         <hr></hr>
-        <MoreBody>{param_id.body}</MoreBody>
-        {/* <div>{todoById((param.id) - 1)}</div> */}
+        <MoreBody>
+          {body}
+        </MoreBody>
+
+
+        {/* <div>{todoById(param.id)}</div> */}
         <MoreButton
           onClick={() => {
             navigate(-1);
@@ -64,7 +84,7 @@ const MoreButton = styled.button`
 `
 const MoreId = styled.div`
   float:left;
-  
+
 `
 const MoreTitle = styled.div`
    margin: 30px 0 30px;

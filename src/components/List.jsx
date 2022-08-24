@@ -22,24 +22,25 @@ const List = () => {
       <TodosWorking>
 
         {todos.map((todo) => {
-          if (todo.isDone === false) {
-            return (
-              <Todo key={todo.id} todo={todo} />
-            )
+          if (todo.isDone === true) {
+            return null
           }
-        }
-        )}
+          return (
+            <Todo key={todo.id} todo={todo} />
+          )
+        })}
       </TodosWorking>
 
       <h2>Done🎉</h2>
       <TodosDone>
 
         {todos.map((todo) => {
-          if (todo.isDone === true) {
-            return (
-              <Todo key={todo.id} todo={todo} />
-            )
+          if (todo.isDone === false) {
+            return null
           }
+          return (
+            <Todo key={todo.id} todo={todo} />
+          )
         })}
       </TodosDone>
     </ListBox>
