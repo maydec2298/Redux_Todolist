@@ -1,4 +1,3 @@
 ## 항해99 4주차 주특기 숙련 개인과제
 
-![image](https://user-images.githubusercontent.com/110373500/186623376-91d9cf3a-d1bc-4eda-969c-118ed3d17303.png)
-
+![image](https://user-images.githubusercontent.com/110373500/186623777-519f514b-5964-41b7-9c6d-e9a5e06e56af.png)
